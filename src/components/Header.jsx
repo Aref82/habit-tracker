@@ -1,12 +1,14 @@
 import { Nav, Container } from 'react-bootstrap'
+import React from "react";
+import moment from "moment-jalaali";
 
 const Header = () => {
-  const date = new Date()
   return (
+
     <Nav className='bg-primary p-2 background'>
       <Container className='d-flex justify-content-between align-items-center'>
-        <h3 className='fw-bold'>Ninja Habits</h3>
-        <span>{date.toDateString()}</span>
+        <h3 className='fw-bold'>نام برای برناممون </h3>
+        <span>{moment().format("jYYYY/jM/jD")}</span>
       </Container>
     </Nav>
   )

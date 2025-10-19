@@ -1,9 +1,7 @@
 .background {
-    background-image: url('../public/moon.jpg');
+    background-image: url('../public/wallpaper.jpg');
     background-size: 90%;
     background-position: -350% 30%;
-    /* background-position: right; */
-
 }
 body {
     background: rgb(0,0,0);

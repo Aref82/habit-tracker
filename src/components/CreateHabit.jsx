@@ -22,10 +22,10 @@ const CreateHabit = (props) => {
         <Modal.Body>
           <Form onSubmit={() => AddHabitHandler}>
             <Form.Group controlId='title'>
-              <Form.Label>Habit Title</Form.Label>
+              <Form.Label>نام عادت</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='enter title'
+                placeholder='تکمیل پروژه'
                 value={title}
                 autoFocus={true}
                 required={true}
@@ -33,16 +33,16 @@ const CreateHabit = (props) => {
             </Form.Group>
 
             <Form.Group controlId='description'>
-              <Form.Label>Describe it </Form.Label>
+              <Form.Label>توضیحات </Form.Label>
               <Form.Control
                 type='text'
-                placeholder='short description'
+                placeholder='......ساعت 7 با'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}></Form.Control>
             </Form.Group>
 
             <Modal.Footer>
-              <Button onClick={() => AddHabitHandler()}>Add Habit</Button>
+              <Button onClick={() => AddHabitHandler()}>تایید</Button>
             </Modal.Footer>
           </Form>
         </Modal.Body>

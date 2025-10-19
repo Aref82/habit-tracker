@@ -24,7 +24,7 @@ const Overview = () => {
           <i className='fa-regular fa-calendar-minus'></i>
         </Col>
         <Col md={4} className='onMobile'>
-          <h4>Habits</h4>
+          <p style={{display:"flex", whiteSpace:"nowrap"}}>عادات هفتگی</p>
         </Col>
       </Row>
       <ListGroup>
@@ -49,15 +49,20 @@ const Overview = () => {
 
       <Row>
        
-        <Col className='d-flex justify-content-end'>
+        <Col className='d-flex justify-content-end' style={{display:'flex',gap:'10px'}}>
           <Button
             type='button'
             className='bg-primary mt-3 mobile'
             onClick={() => setModalShow(true)}>
 
-            <i className='fa-solid fa-circle-plus'></i> &nbsp;&nbsp; New Habit
+            <i className='fa-solid fa-circle-plus' ></i> &nbsp;&nbsp;  عادت جدید
           </Button>
           <CreateHabit show={modalShow} onHide={() => setModalShow(false)} />
+
+            <Button type='button' className='bg-primary mt-3 mobile'>
+
+                <i className='fa-solid fa-circle-plus'></i> &nbsp;&nbsp;آنالیز AI
+            </Button>
         </Col>
       </Row>
     </>
