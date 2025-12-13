@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+    <link rel="icon" type="image/png" href="lifestyle.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Habit Tracker AI</title>
@@ -43,6 +44,25 @@
 
         .side-titles { display: flex; flex-direction: column; }
         .side-titles h1 { font-size: 0.9rem; opacity: 0.8; }
+        .brand-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* فاصله بین عکس و متن */
+    justify-content: center;
+}
+
+/* استایل عکس لوگو */
+.header-logo {
+    width: 45px;      /* اندازه عکس */
+    height: 45px;
+    object-fit: contain; /* عکس دفرمه نشود */
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); /* سایه نرم به عکس */
+    transition: transform 0.3s ease;
+}
+
+.header-logo:hover {
+    transform: rotate(10deg) scale(1.1); /* انیمیشن بامزه موقع هاور */
+}
 
         .app-title {
             font-size: 1.6rem;
@@ -51,6 +71,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -1px;
+            margin: 0;
         }
 
         .ai-btn {
@@ -128,7 +149,10 @@
             <h1>مسیر رشد من</h1>
         </div>
 
+        <div class="brand-container">
+        <img src="lifestyle.png" alt="Logo" class="header-logo">
         <div class="app-title">Habit Tracker</div>
+    </div>
 
         <button class="ai-btn" onclick="askAI()">✨ تحلیل AI</button>
     </header>
