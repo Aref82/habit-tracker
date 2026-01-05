@@ -1,0 +1,102 @@
+<div class="main-container" dir="rtl">
+  
+  <div class="hero-section">
+    <h1>مدیریت هوشمند عادت‌ها</h1>
+    <p>نسخه ارایه برای دانشگاه تهران جنوب استاد زمردیان</p>
+  </div>
+
+  <div class="content-wrapper">
+    
+    <div class="add-box">
+      <div class="input-row">
+        <input nz-input placeholder="عادت جدید را وارد کنید..." [(ngModel)]="newHabit" (keyup.enter)="add()" class="main-input" />
+      </div>
+      <div class="settings-row">
+        <div class="date-picker-wrapper">
+         <span class="label">📅 مهلت:</span>
+          <nz-date-picker 
+            [(ngModel)]="newDate" 
+            nzPlaceHolder="انتخاب تاریخ"
+            class="native-date-input">
+          </nz-date-picker>
+        </div>
+        <div class="color-picker-wrapper">
+          <span class="label">🎨 رنگ تگ:</span>
+          <input type="color" [(ngModel)]="newColor" class="native-color-input" />
+        </div>
+        <button (click)="add()" class="add-btn">
+          + افزودن
+        </button>
+      </div>
+    </div>
+
+    <div class="list-container">
+      <div *ngFor="let item of habits$ | async;let i = index" 
+           class="custom-card"
+           [style.border-right-color]="item.color || '#3b82f6'"
+           [class.is-done]="item.completed">
+        
+        <div class="card-content">
+          
+          <div class="right-side">
+            
+            <button class="status-btn" 
+                    [class.is-checked]="item.completed"
+                    (click)="toggle(item.id)">
+              <span *ngIf="!item.completed">{{ i + 1 }}</span>
+              <span *ngIf="item.completed" nz-icon nzType="check"></span>
+            </button>
+            
+            <div class="text-info">
+              <h3>{{ item.title }}</h3>
+              <span *ngIf="item.deadline && !item.completed" class="deadline-badge">
+                 ⏳ {{ getDaysRemaining(item.deadline) }}
+              </span>
+            </div>
+          </div>
+
+          <div class="left-side">
+            <label nz-checkbox [(ngModel)]="item.selectedForAi" nz-tooltip="انتخاب برای تحلیل"></label>
+            
+            
+            
+            <button class="action-btn edit-btn" (click)="startEdit(item)">
+              <span nz-icon nzType="edit"></span>
+            </button>
+            <button class="action-btn delete-btn" (click)="delete(item.id)">
+              <span nz-icon nzType="delete"></span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngIf="(habits$ | async)?.length === 0" class="empty-state">
+        <span nz-icon nzType="inbox" style="font-size: 30px; display: block; margin-bottom: 10px;"></span>
+        لیست خالی است. اولین عادت را بسازید!
+      </div>
+    </div>
+
+    <div class="ai-section">
+      <p style="color: #94a3b8; text-align: center; margin-bottom: 15px;">
+        آیتم‌ها را تیک بزنید و دکمه زیر را فشار دهید:
+      </p>
+      
+      <button nz-button nzBlock class="ai-btn" (click)="askAi()" [disabled]="loading">
+        <span nz-icon nzType="robot" style="margin-left: 10px;"></span> 
+        {{ loading ? 'هوش مصنوعی در حال تحلیل...' : 'تحلیل هوشمند رفتار من' }}
+      </button>
+
+      <div *ngIf="aiResult" class="ai-result-box">
+        {{ aiResult }}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<nz-modal [(nzVisible)]="isEditModalVisible" nzTitle="ویرایش" (nzOnCancel)="cancelEdit()" (nzOnOk)="saveEdit()">
+  <ng-container *nzModalContent>
+    <input nz-input [(ngModel)]="editingTitle" />
+  </ng-container>
+</nz-modal>
